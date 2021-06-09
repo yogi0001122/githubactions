@@ -1,0 +1,11 @@
+pandas
+flask-bcrypt
+Flask-SQLAlchemy
+flask-restplus
+Flask-Migrate
+pyjwt
+Flask-Script
+flask_testing
+sqlalchemy-migrate==0.7.2
+psycopg2==2.8.5
+Werkzeug==0.16.1
