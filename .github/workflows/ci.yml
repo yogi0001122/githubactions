@@ -23,7 +23,7 @@ jobs:
       with:
         image: 8447756042/livedemo
         registry: docker.io
-        tags: latest
+        tags: v1, latest
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
