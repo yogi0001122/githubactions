@@ -1,6 +1,7 @@
 .idea
 *.iml
-.git/
+.github/
+.git
 .gradle
 gradle
 out/
