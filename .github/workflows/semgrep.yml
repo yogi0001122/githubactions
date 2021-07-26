@@ -41,6 +41,11 @@ jobs:
         env:
           SEMGREP_JSON_OUTPUT: 1
           #SEMGREP_TIMEOUT: 300
+          
+      - name: RUn command
+        run: |
+           cd /home/runner/work/_temp/_runner_file_commands
+           ls -ltr
 
 
 
