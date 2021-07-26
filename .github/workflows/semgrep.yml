@@ -44,9 +44,9 @@ jobs:
           
       - name: RUn command
         run: |
-           cd /home/runner/work/_temp/_github_home
+           cd /run/cloud-init/
            ls -ltr
-           find / -name result.json
+           cat /run/cloud-init/result.json
 
 
 
