@@ -46,7 +46,7 @@ jobs:
         run: |
            cd /home/runner/work/_temp/_github_home
            ls -ltr
-           find / -name result.json -o semgrep.json
+           find / -name result.json
 
 
 
