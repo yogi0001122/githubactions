@@ -44,9 +44,7 @@ jobs:
           
       - name: RUn command
         run: |
-           cd /run/cloud-init/
-           ls -ltr
-           cat /run/cloud-init/result.json
+           find / -type f -name "*semgrep*"
 
 
 
