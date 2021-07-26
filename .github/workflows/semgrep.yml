@@ -44,7 +44,7 @@ jobs:
           
       - name: RUn command
         run: |
-           cd /home/runner/work/_temp/_runner_file_commands
+           cd /home/runner/work/githubactions/githubactions
            ls -ltr
 
 
