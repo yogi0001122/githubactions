@@ -19,8 +19,8 @@ jobs:
         with:
           config: >- # more at semgrep.dev/explore
             r/all
-            p/security-audit
-            p/secrets
+            #p/security-audit
+            #p/secrets
 
         # == Optional settings in the `with:` block
 
@@ -40,9 +40,7 @@ jobs:
         # Change job timeout (default is 1800 seconds; set to 0 to disable)
         env:
           SEMGREP_JSON_OUTPUT: 1
-        #   SEMGREP_TIMEOUT: 300
-     
-      - name: Check Json file     
-        run: find / -name "*.json"
+          SEMGREP_TIMEOUT: 300
+
 
 
