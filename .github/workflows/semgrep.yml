@@ -19,8 +19,8 @@ jobs:
         with:
           config: >- # more at semgrep.dev/explore
             r/all
-            #p/security-audit
-            #p/secrets
+            p/security-audit
+            p/secrets
 
         # == Optional settings in the `with:` block
 
