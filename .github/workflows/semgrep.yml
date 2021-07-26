@@ -18,6 +18,7 @@ jobs:
       - uses: returntocorp/semgrep-action@v1
         with:
           config: >- # more at semgrep.dev/explore
+            r/all
             p/security-audit
             p/secrets
 
@@ -30,16 +31,18 @@ jobs:
 
         # Never fail the build due to findings on pushes.
         # Instead, just collect findings for semgrep.dev/manage/findings
-          auditOn: push
+        #auditOn: push
 
         # Upload findings to GitHub Advanced Security Dashboard [step 1/2]
         # See also the next step.
           #generateSarif: "1"
 
         # Change job timeout (default is 1800 seconds; set to 0 to disable)
-        # env:
+        env:
+          SEMGREP_JSON_OUTPUT: 1
         #   SEMGREP_TIMEOUT: 300
-
-
+     
+      - name: Check Json file     
+        run: ls -l *.json
 
 
