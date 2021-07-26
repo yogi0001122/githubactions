@@ -43,6 +43,8 @@ jobs:
         #   SEMGREP_TIMEOUT: 300
      
       - name: Check Json file     
-        run: ls -l *.json
+        run: |
+            cd /github/workspace
+            ls -ltr
 
 
