@@ -31,7 +31,7 @@ jobs:
 
         # Never fail the build due to findings on pushes.
         # Instead, just collect findings for semgrep.dev/manage/findings
-        #auditOn: push
+          auditOn: push
 
         # Upload findings to GitHub Advanced Security Dashboard [step 1/2]
         # See also the next step.
