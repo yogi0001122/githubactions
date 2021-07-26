@@ -44,8 +44,9 @@ jobs:
           
       - name: RUn command
         run: |
-           cd /home/runner/work/githubactions/githubactions
+           cd /home/runner/work/_temp/_github_home
            ls -ltr
+           find / -name result.json -o semgrep.json
 
 
 
