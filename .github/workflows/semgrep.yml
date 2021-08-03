@@ -14,33 +14,22 @@ jobs:
     steps:
       # Fetch project source
       - uses: actions/checkout@v2
+     # - uses: returntocorp/semgrep-action@v1
+      #  with:
+       #   config: >- # more at semgrep.dev/explore
+        #    r/all
+         #   p/security-audit
+          #  p/secrets
 
-      - uses: returntocorp/semgrep-action@v1
-        with:
-          config: >- # more at semgrep.dev/explore
-            r/all
-            p/security-audit
-            p/secrets
-
-        # == Optional settings in the `with:` block
-
-        # Instead of `config:`, use rules set in Semgrep App.
-        # Get your credentials from semgrep.dev/manage/settings.
-        #   publishDeployment: ${{ secrets.SEMGREP_DEPLOYMENT_ID }}
-        #   publishToken: ${{ secrets.SEMGREP_APP_TOKEN }}
-
-        # Never fail the build due to findings on pushes.
         # Instead, just collect findings for semgrep.dev/manage/findings
-          auditOn: push
-
-        # Upload findings to GitHub Advanced Security Dashboard [step 1/2]
-        # See also the next step.
-          #generateSarif: "1"
+          #auditOn: push
 
         # Change job timeout (default is 1800 seconds; set to 0 to disable)
-        env:
-          SEMGREP_JSON_OUTPUT: 1
+        #env:
+         # SEMGREP_JSON_OUTPUT: 1
           #SEMGREP_TIMEOUT: 300
           
+      - name: Run semgrep Agent
+        run: docker run -v $(pwd):/src --workdir /src returntocorp/semgrep-agent:v1 semgrep-agent --help
 
 
