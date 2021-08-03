@@ -42,9 +42,5 @@ jobs:
           SEMGREP_JSON_OUTPUT: 1
           #SEMGREP_TIMEOUT: 300
           
-      - name: RUn command
-        run: |
-           find / -type f -name "*semgrep*"
-
 
 
