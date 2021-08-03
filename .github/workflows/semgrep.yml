@@ -33,9 +33,20 @@ jobs:
         run: docker run --rm -v $(pwd):/src --workdir /src returntocorp/semgrep-agent:v1 semgrep-agent --config r/all  --gitlab-json > semgre_json
         continue-on-error: true
     
-      - name: Load Json file to ELK
+      - name: Check Json file content
         run: cat semgre_json
         if: always()
-    
-
+        
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+           python-version: 3.8 #install the python needed
+           
+      - name: Load findings to elk
+        run: |
+            python elk_load.py
+        env:
+          url: ${{ secrets.ELK_URL }}
+          user: ${{ secrets.ELK_USERNAME }}
+          pass: ${{ secrets.ELK_PASSWORD }}
 
