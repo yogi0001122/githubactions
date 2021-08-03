@@ -28,7 +28,7 @@ def load_event_elk(item,index_name):
     print(item)
 
 def read_json():
-    f = open('agent.json')
+    f = open('semgre_json')
     data = json.load(f)
     index_name = "semgrepfindings" + "-" + time.strftime("%Y%m%M")
     for item in data['vulnerabilities']:
