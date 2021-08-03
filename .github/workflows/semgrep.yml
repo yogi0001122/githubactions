@@ -31,9 +31,11 @@ jobs:
           
       - name: Run semgrep Agent
         run: docker run --rm -v $(pwd):/src --workdir /src returntocorp/semgrep-agent:v1 semgrep-agent --config r/all  --gitlab-json > semgre_json
+        continue-on-error: true
     
       - name: Load Json file to ELK
         run: cat semgre_json
+        if: always()
     
 
 
