@@ -30,10 +30,10 @@ jobs:
           #SEMGREP_TIMEOUT: 300
           
       - name: Run semgrep Agent
-        run: docker run -v $(pwd):/src --workdir /src returntocorp/semgrep-agent:v1 semgrep-agent --config r/all --gitlab-json > gl-sast-report.json
+        run: docker run --rm -v $(pwd):/src --workdir /src returntocorp/semgrep-agent:v1 semgrep-agent --config r/all  --gitlab-json > semgre_json
     
       - name: Load Json file to ELK
-        run: cat gl-sast-report.json
+        run: cat semgre_json
     
 
 
