@@ -41,7 +41,12 @@ jobs:
         uses: actions/setup-python@v2
         with:
            python-version: 3.8 #install the python needed
-           
+  
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install elasticsearch
+  
       - name: Load findings to elk
         run: |
             python elk_load.py
