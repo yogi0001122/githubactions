@@ -1,7 +1,11 @@
 from elasticsearch import Elasticsearch,helpers
 import json
 import time
+import os
 
+url=os.environ['url']
+user=os.environ['user']
+pass=os.environ['pass']
 es = Elasticsearch(url, http_auth=(user, pass))
 MSG_TXT = "{\"id\": \"%s\",\"category\": \"%s\",\"message\": \"%s\",\"severity\": \"%s\",\"confidence\": \"%s\",\"file\": \"%s\",\"start_line\": %.2f,\"end_line\": %.2f,\"identifiers_name\": \"%s\",\"identifiers_value\": \"%s\",\"url\": \"%s\"}"
 
