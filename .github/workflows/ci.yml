@@ -38,3 +38,6 @@ jobs:
       
     - name:  check container status
       run: docker container ps -a
+      
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
