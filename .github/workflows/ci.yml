@@ -39,5 +39,11 @@ jobs:
     - name:  check container status
       run: docker container ps -a
       
+    - name: Set up secret file
+      env:
+        username: ${{ secrets.DOCKER_USERNAME }}
+      run: |
+        echo $username >> secrets.txt
+        
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
