@@ -9,6 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.0.0
+      - shell: pwsh
+        env:
+          SUPER_SECRET: ${{ secrets.GCP_SA_INFRA_KEY }}
+        run: |
+             example-command "$env:SUPER_SECRET"
       - name: SetLocale
         run: |
            sudo apt-get update && sudo apt-get install tzdata locales -y && sudo locale-gen pt_BR.UTF-8
