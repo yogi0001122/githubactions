@@ -1,0 +1,21 @@
+name: Terraform Setup and Apply
+#on:
+#  schedule:
+#    - cron: '0 12 * * 1'
+on: [workflow_dispatch]
+jobs:
+  rotate:
+    name: Terraform Setup and Apply
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.0.0
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          # terraform_version: 0.13.0
+          cli_config_credentials_token: ${{ secrets.GCP_SA_INFRA_KEY }}
+          
+      - name: Terraform Init
+        run: terraform init
+        env:
+           GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_INFRA_KEY }}
