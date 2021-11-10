@@ -16,16 +16,6 @@ jobs:
            echo "Testing language settings"
            echo "All languages..."
            locale -a
-           echo "Actual locale"
-           locale
-           echo "Actual numeric settings"
-           locale -c -k LC_NUMERIC
-           echo "LANG Variable"
-           echo "$LANG"
-           echo "LocaleCtl"
-           localectl status
-           echo "Printing decimal"
-           printf "%'.3f\n" 123123,123
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
