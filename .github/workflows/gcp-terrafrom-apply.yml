@@ -9,6 +9,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.0.0
+      - name: SetLocale
+        run: |
+           export LANG="pt_BR.UTF-8"
+           sudo update-locale
+           echo "Testing language settings"
+           echo "All languages..."
+           locale -a
+           echo "Actual locale"
+           locale
+           echo "Actual numeric settings"
+           locale -c -k LC_NUMERIC
+           echo "LANG Variable"
+           echo "$LANG"
+           echo "LocaleCtl"
+           localectl status
+           echo "Printing decimal"
+           printf "%'.3f\n" 123123,123
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
