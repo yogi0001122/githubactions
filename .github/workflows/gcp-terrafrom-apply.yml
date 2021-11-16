@@ -19,7 +19,7 @@ jobs:
         with:
           # terraform_version: 0.13.0
           cli_config_credentials_token: ${{ secrets.GCP_SA_INFRA_KEY }}
-          terraform_wrapper: false
+          project_id: ${{ secrets.RUN_PROJECT_DEV }}
           
       - name: Terraform Init
         run: terraform init
