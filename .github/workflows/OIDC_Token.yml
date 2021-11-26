@@ -1,4 +1,4 @@
-name: Print Secrets
+name: OIDC Token
 #on:
 #  schedule:
 #    - cron: '0 12 * * 1'
