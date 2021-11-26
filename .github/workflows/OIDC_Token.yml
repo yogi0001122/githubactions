@@ -1,4 +1,8 @@
-name: OIDC TOken
+name: Print Secrets
+#on:
+#  schedule:
+#    - cron: '0 12 * * 1'
+on: [workflow_dispatch]
 jobs:
   rotate:
     name: rotate gcp key
