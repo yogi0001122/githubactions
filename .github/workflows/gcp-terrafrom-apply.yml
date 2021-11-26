@@ -7,6 +7,10 @@ jobs:
   rotate:
     name: Terraform Setup and Apply
     runs-on: ubuntu-latest
+    permissions:
+       contents: 'read'
+       id-token: 'write'
+          
     steps:
       - uses: actions/checkout@v2.0.0
       #- name: Setup GCP Service Account
@@ -15,6 +19,8 @@ jobs:
        #   service_account_key: ${{ secrets.GCP_SA_INFRA_KEY }}
        #   export_default_credentials: true
          # Configure Workload Identity Federation and generate an access token.
+          # Add "id-token" with the intended permissions.
+
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v0.4.0'
