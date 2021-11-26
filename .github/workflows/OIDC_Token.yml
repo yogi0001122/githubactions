@@ -1,0 +1,15 @@
+name: OIDC TOken
+jobs:
+  rotate:
+    name: rotate gcp key
+    runs-on: ubuntu-latest
+    steps:
+    # Configure Workload Identity Federation and generate an access token.
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v0.4.0'
+      with:
+        token_format: 'access_token'
+        workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+        service_account: 'my-service-account@my-project.iam.gserviceaccount.com'
+        access_token_lifetime: '300s' # optional, default: '3600s' (1 hour)
