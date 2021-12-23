@@ -28,4 +28,4 @@ jobs:
     # token.
     - id: 'access-secret'
       run: |-
-         curl https://secretmanager.googleapis.com/v1/projects/733705132786/secrets/testing/versions/1:access --header "Authorization: Bearer ${{ steps.auth.outputs. }}"
+         curl https://secretmanager.googleapis.com/v1/projects/733705132786/secrets/testing/versions/1:access --header "Authorization: Bearer ${{ steps.auth.outputs.access_token }}"
