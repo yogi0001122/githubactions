@@ -30,4 +30,4 @@ jobs:
       run: |-
         #curl https://secretmanager.googleapis.com/v1/projects/733705132786/secrets/testing/versions/1:access \
           #--header "Authorization: Bearer ${{ steps.auth.outputs.access_token }}"
-         curl -X GET -H "Authorization: Bearer "${{ steps.auth.outputs.access_token }}" https://iam.googleapis.com/v1/projects/733705132786/serviceAccounts/terraform1@733705132786.iam.gserviceaccount.com/keys"
+         curl -X GET -H "Authorization: Bearer ${{ steps.auth.outputs.access_token }}" "https://iam.googleapis.com/v1/projects/733705132786/serviceAccounts/terraform1@733705132786.iam.gserviceaccount.com/keys"
