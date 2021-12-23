@@ -29,4 +29,4 @@ jobs:
     - id: 'access-secret'
       run: |-
          echo ${{ steps.auth.outputs.access_token }}
-         curl -X GET -H "Authorization: Bearer ${{ steps.auth.outputs.access_token }}" "https://iam.googleapis.com/v1/projects/733705132786/serviceAccounts/terraform1@tough-nature-334510.iam.gserviceaccount.com/keys"
+         curl -X GET -H "Authorization: Bearer ${{ steps.auth.outputs.access_token }}" "https://iam.googleapis.com/v1/projects/733705132786/serviceAccounts/vijayterraform@tough-nature-334510.iam.gserviceaccount.com/keys?keyTypes=USER_MANAGED"
