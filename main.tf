@@ -1,51 +1,17 @@
-terraform {
-  required_providers {
-    google = {
-      source = "hashicorp/google"
-      version = "3.5.0"
-    }
-  }
+# Create a Workload Identity Pool and Workload Identity Provider in that pool
+module "workload_identity_pool" {
+  source       = "./modules/gcp-wilf"
+  project_id   =  var.project_id
+  wilf_id      = var.wilf_id
+  wilf_provider_id = var.wilf_provider_id
 }
 
-provider "google" {
-  project = "tough-nature-334510"
-  region  = "us-central1"
-  zone    = "us-central1-c"
-}
-
-# Deploy image to Cloud Run
-resource "google_cloud_run_service" "mywebapp1" {
-  name     = "mywebapp1"
-  location = "us-central1"
-  template {
-    spec {
-      containers {
-        image = "gcr.io/cloudrun/hello"
-      }
-    }
-  }
-  traffic {
-    percent         = 100
-    latest_revision = true
-  }
-}
-# Create public access
-data "google_iam_policy" "noauth" {
-  binding {
-    role = "roles/run.invoker"
-    members = [
-      "allUsers",
-    ]
-  }
-}
-# Enable public access on Cloud Run service
-resource "google_cloud_run_service_iam_policy" "noauth" {
-  location    = google_cloud_run_service.mywebapp1.location
-  project     = google_cloud_run_service.mywebapp1.project
-  service     = google_cloud_run_service.mywebapp1.name
-  policy_data = data.google_iam_policy.noauth.policy_data
-}
-# Return service URL
-output "url" {
-  value = "${google_cloud_run_service.mywebapp1.status[0].url}"
+# SA: Workload indtity pool binding for Service account
+module "workload_idetify-sa-binding" {
+  source       = "./modules/wlif-sa-binding"
+  project_id   =  var.project_id
+  gh_repo      = var.repo
+  sa_id        = var.sa_account
+  poolid       = var.wilf_id
+  depends_on   = [module.workload_identity_pool]
 }
