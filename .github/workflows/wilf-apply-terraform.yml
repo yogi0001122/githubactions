@@ -1,0 +1,44 @@
+name: Terraform Setup and Apply
+#on:
+#  schedule:
+#    - cron: '0 12 * * 1'
+on: [workflow_dispatch]
+jobs:
+  rotate:
+    name: Terraform Setup and Apply
+    runs-on: ubuntu-latest
+    permissions:
+       contents: 'read'
+       id-token: 'write'
+          
+    steps:
+      - uses: actions/checkout@v2.0.0
+      - name: Setup GCP Service Account
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.GCP_SA_INFRA_KEY }}
+          export_default_credentials: true
+ 
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          # terraform_version: 0.13.0
+          cli_config_credentials_token: ${{ secrets.GCP_SA_INFRA_KEY }}
+          project_id: ${{ secrets.RUN_PROJECT_DEV }}
+          
+      - name: Terraform Init
+        run: terraform init
+        env:
+            GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_INFRA_KEY }}
+         
+
+      # Generates an execution plan for Terraform
+      - name: Terraform Plan
+        run: terraform plan
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_INFRA_KEY }}
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+        env:
+            GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_INFRA_KEY }}
