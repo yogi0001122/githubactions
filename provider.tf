@@ -7,7 +7,6 @@ terraform {
         }
     }
 }
-
 provider "google-beta" {
     region      = "europe-west1"
 }
