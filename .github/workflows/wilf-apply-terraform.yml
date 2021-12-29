@@ -1,15 +1,10 @@
-name: Terraform Setup and Apply
-#on:
-#  schedule:
-#    - cron: '0 12 * * 1'
+name: Terraform wilf Setup and Apply
+
 on: [workflow_dispatch]
 jobs:
   rotate:
     name: Terraform Setup and Apply
     runs-on: ubuntu-latest
-    permissions:
-       contents: 'read'
-       id-token: 'write'
           
     steps:
       - uses: actions/checkout@v2.0.0
@@ -22,7 +17,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
-          # terraform_version: 0.13.0
+          terraform_version: 0.13.0
           cli_config_credentials_token: ${{ secrets.GCP_SA_INFRA_KEY }}
           project_id: ${{ secrets.RUN_PROJECT_DEV }}
           
@@ -30,8 +25,7 @@ jobs:
         run: terraform init
         env:
             GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_INFRA_KEY }}
-         
-
+            
       # Generates an execution plan for Terraform
       - name: Terraform Plan
         run: terraform plan
