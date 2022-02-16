@@ -5,7 +5,7 @@ name: Terraform Setup and Apply
 on: [workflow_dispatch]
 jobs:
   rotate:
-    name: Terraform Setup and Apply
+    name: terrafrom-wilf
     runs-on: ubuntu-latest
     permissions:
        contents: 'read'
