@@ -4,7 +4,7 @@ name: Terraform Setup and Apply
 #    - cron: '0 12 * * 1'
 on: [workflow_dispatch]
 jobs:
-  rotate:
+  terraform-wilf:
     name: terrafrom-wilf
     runs-on: ubuntu-latest
     permissions:
