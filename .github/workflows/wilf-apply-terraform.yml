@@ -11,7 +11,7 @@ jobs:
       - name: Setup GCP Service Account
         uses: google-github-actions/setup-gcloud@master
         with:
-          service_account_key: ${{ GOOGLE_APPLICATION_CREDENTIALS }}
+          service_account_key: ${{ secrets.GCP_SA_INFRA_KEY }}
           export_default_credentials: true
  
       - name: Setup Terraform
