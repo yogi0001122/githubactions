@@ -3,8 +3,7 @@ name: PR Review
 on:
   push:
     branches:
-      - master
-      - main
+    - master
 
 jobs:
   slackNotification:
