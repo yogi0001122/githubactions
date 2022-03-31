@@ -1,7 +1,6 @@
 name: PR Review
 
 on: [workflow_dispatch]
-name: PR - Ready for review
 jobs:
   slackNotification:
     name: Slack Notification
