@@ -1,0 +1,33 @@
+name: PR Review
+
+on: [workflow_dispatch]
+name: PR - Ready for review
+jobs:
+  slackNotification:
+    name: Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/github-script@v6
+        id: set-result
+        name: Get real name of assignees as slack mentions
+        with:
+          github-token: ${{secrets.TOKEN}}
+          result-encoding: string
+          script: |
+            const slackMemberIds = {
+              'yogi0001122': 'U020S4AS1NH',
+            };
+
+            const getRealName = (username) => github.rest.users.getByUsername({username,}).then((user) => user.data.name);
+
+            const realNames = await Promise.all(
+                context.payload.pull_request.assignees
+                  .map(a => a.login)
+                  .map(getRealName)
+              );
+
+            return realNames.map(n => slackMemberIds[n] ? `<@${slackMemberIds[n]}>` : n).join(', ');
+      - name: Print Value
+        run: |
+           echo ${{steps.set-result.outputs.result}}
