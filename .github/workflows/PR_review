@@ -12,7 +12,7 @@ jobs:
         id: set-result
         name: Get real name of assignees as slack mentions
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{secrets.TOKEN}}
           result-encoding: string
           script: |
             const slackMemberIds = {
