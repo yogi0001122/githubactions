@@ -15,7 +15,5 @@ RUN rm -rf /usr/bin/python \
     && curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" \
     && python get-pip.py \
     && pip --version
-
 RUN pip install -r requirements.txt
-
 CMD python manage.py run
