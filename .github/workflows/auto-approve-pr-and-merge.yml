@@ -10,6 +10,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Use GITHUB_TOKEN
+        run: echo "Using GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
+
       - name: Get Pull Request Number
         id: pr
         uses: actions/github-script@v5
@@ -24,4 +27,4 @@ jobs:
       - name: Auto Merge Pull Request
         uses: "pascalgn/automerge-action@v0.16.2"
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
