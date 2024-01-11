@@ -25,4 +25,3 @@ jobs:
         uses: "pascalgn/automerge-action@v0.16.2"
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          pull-request-number: ${{ steps.pr.outputs.number }}
