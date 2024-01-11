@@ -5,7 +5,7 @@ variable "project_id" {
 
 variable "wilf_id" {
     type = string
-    description = "Wrokload Identity Pool Id"
+    description = "Wrokload Identity PoolId"
   
 }
 
