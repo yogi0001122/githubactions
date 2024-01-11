@@ -6,23 +6,12 @@ on:
 jobs:
   automerge-pull-requests:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # - name: Get Pull Request Number
-      #   id: pr
-      #   uses: actions/github-script@v5
-      #   with:
-      #     script: |
-      #       const pr = context.payload.pull_request;
-      #       if (!pr) {
-      #         throw new Error("Event payload missing pull request number.");
-      #       }
-      #       return pr.number;
-
-      - name: Auto Merge Pull Request
-        uses: "pascalgn/automerge-action@v0.16.2"
+      - uses: ahmadnassri/action-dependabot-auto-merge@v2
         with:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          #pull-request-number: ${{ steps.pr.outputs.number }}
+          github-token: ${{ secrets.mytoken }}
