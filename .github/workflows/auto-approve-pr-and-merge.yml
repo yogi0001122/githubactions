@@ -12,12 +12,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: autoapprove  
-        id: automerge
-        uses: "pascalgn/automerge-action@v0.16.2"
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      - name: feedback
-        if: ${{ steps.automerge.outputs.mergeResult == 'merged' }}
+      - name: Merge pull request
         run: |
-          echo "Pull request ${{ steps.automerge.outputs.pullRequestNumber }} merged!"
+          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+
+          # Merge the pull request
+          curl -X PUT \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/merge"
