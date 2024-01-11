@@ -6,25 +6,23 @@ on:
 jobs:
   automerge-pull-requests:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Use GITHUB_TOKEN
         run: echo "Using GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Get Pull Request Number
-        id: pr
-        uses: actions/github-script@v5
-        with:
-          script: |
-            const pr = context.payload.pull_request;
-            if (!pr) {
-              throw new Error("Event payload missing pull request number.");
-            }
-            return pr.number;
-
-      - name: Auto Merge Pull Request
-        uses: "pascalgn/automerge-action@v0.16.2"
-        with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - id: automerge
+        name: automerge
+        uses: "pascalgn/automerge-action@v0.15.6"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      - name: feedback
+        if: ${{ steps.automerge.outputs.mergeResult == 'merged' }}
+        run: |
+          echo "Pull request ${{ steps.automerge.outputs.pullRequestNumber }} merged!"
