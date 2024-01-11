@@ -1,33 +1,23 @@
-name: Auto Merge PRs
+name: Auto Merge PR
 
 on:
   pull_request:
     types:
-      - opened
+      - labeled
       - synchronize
+      - opened
+      - ready_for_review
 
 jobs:
-  automerge:
+  auto_merge:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Auto merge PR
-        uses: actions/github-script@v4
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const { data: pullRequest } = await github.pulls.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.payload.pull_request.number
-            });
 
-            if (pullRequest.mergeable_state === 'clean') {
-              await github.pulls.merge({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                pull_number: context.payload.pull_request.number
-              });
-            }
+      - name: Merge PR
+        uses: repo-sync/github-sync@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          merge_method: squash
