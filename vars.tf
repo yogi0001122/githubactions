@@ -1,6 +1,6 @@
 variable "project_id" {
   type = string
-  description = "The Google Project ID"
+  description = "TheGoogle Project ID"
 }
 
 variable "wilf_id" {
