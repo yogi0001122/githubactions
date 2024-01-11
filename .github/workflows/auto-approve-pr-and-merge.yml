@@ -12,12 +12,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Use GITHUB_TOKEN
-        run: echo "Using GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - id: automerge
+      - name: autoapprove  
+        id: automerge
         name: automerge
         uses: "pascalgn/automerge-action@v0.15.6"
         env:
