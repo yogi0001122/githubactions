@@ -6,6 +6,10 @@ on:
 jobs:
   automerge-pull-requests:
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Get Pull Request Number
         id: pr
         uses: actions/github-script@v5
@@ -18,8 +22,7 @@ jobs:
             return pr.number;
 
       - name: Auto Merge Pull Request
-        uses: pascalgn/automerge-action@v0.14.3
+        uses: pascalgn/automerge-action@v0.16.2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           pull-request-number: ${{ steps.pr.outputs.number }}
-
