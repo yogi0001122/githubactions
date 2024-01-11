@@ -6,9 +6,6 @@ on:
 jobs:
   automerge-pull-requests:
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-
       - name: Get Pull Request Number
         id: pr
         uses: actions/github-script@v5
